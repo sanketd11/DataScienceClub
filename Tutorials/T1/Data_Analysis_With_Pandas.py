@@ -30,7 +30,7 @@
 # ### Import Library
 # Import the pandas library. Here I renamed it to 'pd' just for the ease of use. Make sure you don't get errors in import 
 
-# In[50]:
+# In[56]:
 
 import pandas as pd
 
@@ -51,7 +51,7 @@ plt.style.use= 'default'# To display plots
 # - read_pickle()
 # - read_sql()
 
-# In[3]:
+# In[57]:
 
 df=pd.read_csv('cars.csv', sep=';')
 
@@ -70,7 +70,7 @@ df=pd.read_csv('cars.csv', sep=';')
 # 
 # Retrieves Shape of the dataset
 
-# In[4]:
+# In[58]:
 
 df.shape
 
@@ -79,7 +79,7 @@ df.shape
 # 
 # Retrive the column names from data
 
-# In[5]:
+# In[59]:
 
 df.columns.tolist()
 
@@ -88,7 +88,7 @@ df.columns.tolist()
 # 
 # Retrieve some of the rows from the begining of the data.'n'is the number of rows to be retrived (default=6)
 
-# In[6]:
+# In[60]:
 
 df.head()
 
@@ -97,7 +97,7 @@ df.head()
 # 
 # Retrieve some of the rows from the end of the data.'n'is the number of rows to be retrived (default=6)
 
-# In[7]:
+# In[61]:
 
 df.tail()
 
@@ -106,7 +106,7 @@ df.tail()
 # 
 # Generate Summary statistics form the dataset
 
-# In[8]:
+# In[62]:
 
 df.describe()
 
@@ -115,7 +115,7 @@ df.describe()
 # 
 # This function checks if there are any missing values in the dataset. Returns true if the value is missing. The missing values in the dataset need to be handled carefully in order to maintain consistancy in data 
 
-# In[9]:
+# In[63]:
 
 df.isnull()
 
@@ -128,7 +128,7 @@ df.isnull().any()
 # Data manipulation is required to process the data in order to get hidden relationships beteen the features. Following are aome basic functions used for data manipulation in pandas
 # 
 
-# In[52]:
+# In[64]:
 
 # Get Column Values
 # Syntax: df[column_name]
@@ -136,7 +136,7 @@ df.isnull().any()
 df["Origin"][:10]
 
 
-# In[11]:
+# In[65]:
 
 # Get multiple columns
 # Syntax: df[list of column_names]
@@ -149,7 +149,7 @@ col_list=["Car", "Model", "Origin"]
 df[col_list]
 
 
-# In[20]:
+# In[66]:
 
 # Maths with data frame columns. The mathematical operation applies to all the rows of selected rows
 # Multiplication
@@ -165,7 +165,7 @@ df["MPG"][:10] >30 # returns True for if MPG value > 10 otherwise returns False
 
 
 
-# In[13]:
+# In[67]:
 
 #Indexing using comparison
 df[df["MPG"]>40]
@@ -174,14 +174,14 @@ df[df["MPG"]>40]
 df[df["MPG"]>40][["Weight","Car"]]
 
 
-# In[14]:
+# In[68]:
 
 # Slicing Dataframe
 df[1:5]
 df["MPG"][:5]
 
 
-# In[15]:
+# In[69]:
 
 # Group the data according to one of the categorical columns
 # In cars data set Cylinders, Model, Origin are the categorical variables
@@ -193,7 +193,7 @@ data=df.groupby("Origin")["MPG"].mean() # returns pandas object. Can use list of
 list(data)
 
 
-# In[16]:
+# In[70]:
 
 # Data Aggregation methods (Can be used independently or along with 'groupby')
 
@@ -213,7 +213,7 @@ df.count() # Returns the count of column values
 df.sum()  # Returns the sum of all the columns
 
 
-# In[17]:
+# In[71]:
 
 # Drop columns that are not required
 dfNew=df.drop("Origin", axis=1)
@@ -244,91 +244,96 @@ print(dfNew.columns.tolist())
 
 # #### For more details on plots visit: [ Pandas Visualization ]( https://pandas.pydata.org/pandas-docs/stable/visualization.html)   
 
-# ### Analysis
+# ## Analysis
 
-# In[51]:
+# In[72]:
 
 df.groupby("Origin")["Model"].count().plot.pie()
 
 
-# ## The above pie-chart shows that mejority of the models are originated in US
+# ### The above pie-chart shows that mejority of the models are originated in US
 
-# In[35]:
+# In[73]:
 
 df.groupby("Cylinders")["MPG"].mean().plot.bar()
 plt.xlabel("Mean MPG")
 
 
-# ## The above bar chart representation shows that cars having 4 and 5 cylinders gave the highest mean  MPG compared to others
+# ### The above bar chart representation shows that cars having 4 and 5 cylinders gave the highest mean  MPG compared to others
 
-# In[36]:
+# In[74]:
 
 df.groupby("Cylinders")["Horsepower"].mean().plot.barh()
 plt.xlabel("Mean Horsepower")
 
 
-# ## The above chart clearly shows that the cars with 8 cylinders produced highest horspower compared to others
+# ### The above chart clearly shows that the cars with 8 cylinders produced highest horspower compared to others
 
-# In[37]:
+# In[75]:
 
 df.groupby("Cylinders")["Acceleration"].median().plot.line()
 plt.legend(["Mean Acceleration"])
 
 
-# In[38]:
+# In[76]:
 
 df.groupby("Cylinders")["Weight"].plot.kde()
 plt.legend()
 plt.xlabel("Weight")
 
 
-# In[39]:
+# In[77]:
 
 df.groupby("Cylinders")["Weight"].mean().plot.line()
 
 
-# ## The above plots show relation ship between weight and the cylinders. It shows that the cars with higher number of cylinders will weigh more than the one with less number of cylinders
+# ### The above plots show relation ship between weight and the cylinders. It shows that the cars with higher number of cylinders will weigh more than the one with less number of cylinders
 
-# In[40]:
+# In[78]:
 
 df.plot.scatter(y="MPG" ,x="Weight")
 
 
-# ## The above chart shows the relationship between MPG and Weight of the car. We can see that MPG tends to decrease as Weight of the vehicle increases 
+# ### The above chart shows the relationship between MPG and Weight of the car. We can see that MPG tends to decrease as Weight of the vehicle increases 
 
-# In[41]:
+# In[79]:
 
 df.plot.scatter(x="Displacement" ,y="MPG")
 
 
-# In[42]:
+# In[80]:
 
 df.plot.scatter(y='MPG',x='Displacement')
 
 
-# ## The above chart shows the relationship between MPG and Displacement. We can see that MPG tends to decrease with increase in Displacement
+# ### The above chart shows the relationship between MPG and Displacement. We can see that MPG tends to decrease with increase in Displacement
 
+# ## Some  more functions for visualization:
+
+# ### histogram plot for all numerical features
 # - ***df.hist()***
 # 
-# histogram plot for all numerical features
+# 
 
-# In[45]:
+# In[81]:
 
 df.hist(xrot=30,figsize=(14,10))
 
 
-# Histogram plots for all numerical variables grouped by categorical variable
+# ### Histogram plots for all numerical variables grouped by categorical variable "Origin": 
 
-# In[44]:
+# In[ ]:
 
 df.groupby("Origin").hist(xrot=30,figsize=(14,10))
 
 
+# ### Combined representation of all the numerical features using scatter plots (one for each combination of 2 variables) and histogram plots individual variables
+# 
 # - ***pd.scatter_matrix(df)***
 # 
-# Combined representation of all the numerical features using scatter plots (one for each combination of 2 variables) and histogram plots individual variables
+# 
 
-# In[47]:
+# In[ ]:
 
 pd.scatter_matrix(df,figsize=(14,10))
 
