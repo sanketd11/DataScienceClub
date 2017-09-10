@@ -6,7 +6,7 @@
 # ### In this tutorial we will explore ['cars.csv'](https://forge.scilab.org/index.php/p/rdataset/source/file/master/csv/datasets/cars.csv) dataset using basic data manipulation and visualisation functions provided by pandas library
 # 
 # ## You will learn :
-# - To reading dataset using pandas
+# - To read dataset using pandas
 # - To get quick summary of data
 # - To manipulate dataset columns for data processing
 # - To plot the porcessed data for insights
@@ -125,7 +125,7 @@ df.isnull().any()
 
 # ## Data Manipulation
 # 
-# Data manipulation is required to process the data in order to get hidden relationships beteen the features. Following are aome basic functions used for data manipulation in pandas
+# Data manipulation is required to process the data in order to get hidden relationships beteen the features. Following are some basic functions used for data manipulation in pandas
 # 
 
 # In[64]:
@@ -322,7 +322,7 @@ df.hist(xrot=30,figsize=(14,10))
 
 # ### Histogram plots for all numerical variables grouped by categorical variable "Origin": 
 
-# In[ ]:
+# In[82]:
 
 df.groupby("Origin").hist(xrot=30,figsize=(14,10))
 
@@ -333,7 +333,7 @@ df.groupby("Origin").hist(xrot=30,figsize=(14,10))
 # 
 # 
 
-# In[ ]:
+# In[83]:
 
 pd.scatter_matrix(df,figsize=(14,10))
 
